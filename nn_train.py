@@ -3,6 +3,7 @@ from tensorflow.keras import layers, callbacks
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
 
 train_data = pd.read_csv("./data/train.csv")
@@ -57,3 +58,21 @@ plt.xlabel("Epochs")
 plt.ylabel("Loss")
 plt.legend()
 plt.savefig("./plots/Loss.png")
+
+y_pred = (model.predict(X_test) > 0.5).astype("int32")
+
+cm = confusion_matrix(y_test, y_pred)
+cm_normalized = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
+plt.figure(figsize=(8, 6))
+sns.heatmap(
+    cm_normalized,
+    annot=True,
+    fmt=".2f",
+    cmap="Blues",
+    xticklabels=["Class 0", "Class 1"],
+    yticklabels=["Class 0", "Class 1"],
+)
+plt.title("Neural Network")
+plt.xlabel("Predicted")
+plt.ylabel("True")
+plt.savefig("./plots/NeuralNetwork.png")
