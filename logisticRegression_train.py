@@ -1,4 +1,4 @@
-from logisticRegression_model import LogisticRegression
+from models.logisticRegression_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 import pandas as pd
 import numpy as np

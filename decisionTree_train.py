@@ -1,4 +1,4 @@
-from decisionTree_model import DecisionTree
+from models.decisionTree_model import DecisionTree
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 import pandas as pd
 import numpy as np
